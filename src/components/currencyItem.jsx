@@ -51,6 +51,9 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems, targetCu
       getExchangeRate(selectedCurrency, debouncedValue).then((result) =>
         setRate(result)
       );
+      setTargetCurrency({...targetCurrency, from: [selectedCurrency, currencyAmmout]})
+    } else {
+      setTargetCurrency({...targetCurrency, to: [selectedCurrency, currencyAmmout]})
     }
   }, [debouncedValue, selectedCurrency]);
   
@@ -59,7 +62,6 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems, targetCu
       setCurrencyAmmount(formatNumber(rate[selectedCurrency]))
     }
   }, [rate]);
-
 
 
   return (

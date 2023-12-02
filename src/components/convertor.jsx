@@ -7,7 +7,7 @@ const Convertor = () => {
  
   const [convertRate, setConvertRate] = useState({"EUR": 1.00, "USD": 1.00, "UAH": 1.00});
   const [mainItem, setMainItem] = useState([true, false]);
-  const [targetCurrency, setTargetCurrency] = useState({from: [], to: []});
+  const [targetCurrency, setTargetCurrency] = useState({from: ["EUR", 1], to: ["EUR", 1]});
 
   return (
     <div className="w-full  m-[0_auto] p-8 flex justify-center gap-x-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md shadow-lg shadow-blue-500/50">
@@ -37,7 +37,7 @@ const Convertor = () => {
         />
       </div>
       <p className='text-black'>
-        {targetCurrency.from[0]}
+        {targetCurrency.from[0] + " " + targetCurrency.from[1]}
       </p>
     </div>
   );
