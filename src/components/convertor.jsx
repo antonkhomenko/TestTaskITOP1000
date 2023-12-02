@@ -11,6 +11,7 @@ const Convertor = () => {
   //   getExchangeRate("EUR", 1).then(data => setConvertRate(data));
   // }, []);
 
+  test my git 
 
   return (
     <div className="w-full  m-[0_auto] p-8 flex justify-around bg-gray-500 rounded-md">
