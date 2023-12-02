@@ -5,38 +5,40 @@ import getExchangeRate from '../helpers/getExchangeRate';
 
 const Convertor = () => {
  
-  const [convertRate, setConvertRate] = useState({"EUR": 0, "USD": 0, "UAH": 0});
+  const [convertRate, setConvertRate] = useState({"EUR": 1.00, "USD": 1.00, "UAH": 1.00});
   const [mainItem, setMainItem] = useState([true, false]);
-  // useEffect(() => {
-  //   getExchangeRate("EUR", 1).then(data => setConvertRate(data));
-  // }, []);
-
+  const [targetCurrency, setTargetCurrency] = useState({from: [], to: []});
 
   return (
-    <div className="w-full  m-[0_auto] p-8 flex justify-around bg-gray-500 rounded-md">
-      <CurrencyItem
-        exchangePositon="from"
-        rate={convertRate}
-        setRate={setConvertRate}
-        mainItem={mainItem[0]}
-        mainItems={mainItem}
-        setMainItem={setMainItem}
-      />
-      <div className="bg-white rounded-full p-2 cursor-pointer">
-        <img
-          src={switchIcon}
-          alt="switch-icon"
-          className="w-[25px] object-contain"
+    <div className="w-full  m-[0_auto] p-8 flex justify-center gap-x-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md shadow-lg shadow-blue-500/50">
+      <div className='w-[45%]'>
+        <CurrencyItem
+          exchangePositon="from"
+          rate={convertRate}
+          setRate={setConvertRate}
+          mainItem={mainItem[0]}
+          mainItems={mainItem}
+          setMainItem={setMainItem}
+          targetCurrency={targetCurrency}
+          setTargetCurrency={setTargetCurrency}
         />
       </div>
-      <CurrencyItem
-        exchangePositon="to"
-        rate={convertRate}
-        setRate={setConvertRate}
-        mainItem={mainItem[1]}
-        mainItems={mainItem}
-        setMainItem={setMainItem}
-      />
+
+      <div className='w-[45%]'>
+        <CurrencyItem
+          exchangePositon="from"
+          rate={convertRate}
+          setRate={setConvertRate}
+          mainItem={mainItem[1]}
+          mainItems={mainItem}
+          setMainItem={setMainItem}
+          targetCurrency={targetCurrency}
+          setTargetCurrency={setTargetCurrency}
+        />
+      </div>
+      <p className='text-black'>
+        {targetCurrency.from[0]}
+      </p>
     </div>
   );
 }

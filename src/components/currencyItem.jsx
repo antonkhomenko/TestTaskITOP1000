@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import getExchangeRate from "../helpers/getExchangeRate";
+import formatNumber from "../helpers/formatNumber";
 
   const currencyStyle = {
     UAH: "🇺🇦 UAH",
@@ -7,26 +8,27 @@ import getExchangeRate from "../helpers/getExchangeRate";
     USD: "🇺🇸 USD",
   };
 
-const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems}) => {
+const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems, targetCurrency, setTargetCurrency}) => {
 
   const [currencyAmmout, setCurrencyAmmount] = useState(1);
   const [debouncedValue, setDebouncedValue] = useState(1);
   
   const [selectedCurrency, setSelectedCurrency] = useState("EUR");
-  const [wasSelected, setWasSelected] = useState(false);
 
-  const handleSelect = (e) => {
+  const handleSelect = (e) => { 
     setSelectedCurrency(e.target.value);
     if(!mainItem) {
-      setCurrencyAmmount(rate[e.target.value]);
-      setWasSelected(true);
+      setCurrencyAmmount(formatNumber(rate[e.target.value]));
     }
   }
 
   const handleInput = (e) => {
+    if (!/^[0-9\b]+(?:\.[0-9]*)?$/.test(e.target.value)) {
+      return;
+    } 
     setCurrencyAmmount(e.target.value);
     if(!mainItem) {
-      console.log("change now");
+      //TODO: make more elegant solution
       const mainID = mainItems.indexOf(true);
       const mainID2 = mainItems.indexOf(false);
       const newMainItems = [];
@@ -35,7 +37,7 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems}) => {
       setMainItem(newMainItems);  
     }      
   }
-  //debounce
+
   useEffect(() => {
     const delay = 1000;
     const timeoutID = setTimeout(() => {
@@ -54,13 +56,15 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems}) => {
   
   useEffect(() => {
     if(!mainItem) {
-      setCurrencyAmmount(rate[selectedCurrency])
+      setCurrencyAmmount(formatNumber(rate[selectedCurrency]))
     }
-  }, [rate])
+  }, [rate]);
+
+
 
   return (
-    <div className="flex bg-white rounded-md px-1 py-2 text-black">
-        <select className="outline-none cursor-pointer" onChange={handleSelect}>
+    <div className="flex bg-white  px-2 text-black rounded-md w-full">
+        <select className="outline-none cursor-pointer border-r border-gray-600 py-4" onChange={handleSelect}>
           {
             Object.keys(rate).map(currency => (
               <option value={currency} key={currency}>
@@ -69,7 +73,7 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems}) => {
             ))
           }
         </select>
-        <input type="text" className="outline-none px-2 h-full" value={currencyAmmout} onChange={handleInput}/>
+        <input type="text" className="outline-none py-4 px-[10px] h-full text-lg" value={currencyAmmout} onChange={handleInput}/>
     </div>
   )
 }
