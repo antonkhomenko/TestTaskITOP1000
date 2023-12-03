@@ -13,14 +13,12 @@ const App = () => {
   }, []);
  
   return (
-    <div className='flex flex-col  min-h-screen'>
-      <header className="flex justify-center items-center w-full py-12 px-4 border-b border-b-white gap-x-4">
+    <div className="flex flex-col  min-h-screen">
+      <header className="flex justify-center items-center w-full px-2 py-12 lg:px-4 border-b border-b-white gap-x-4 bg-black text-white">
         <span>€ EUR: {(1 / currencyRate["EUR"]).toFixed(2)}</span>
         <span>$ USD: {(1 / currencyRate["USD"]).toFixed(2)}</span>
       </header>
-      <div className='grow flex justify-start items-start py-24 px-[10rem]'>
-        <Convertor/>
-      </div>
+      <Convertor /> 
     </div>
   );
 };
