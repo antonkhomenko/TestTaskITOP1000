@@ -15,8 +15,7 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems, targetCu
   const [debouncedValue, setDebouncedValue] = useState(1);
   
   const [selectedCurrency, setSelectedCurrency] = useState(() => {
-    if(mainItem) return "EUR";
-    return "UAH";
+    return mainItem ? "EUR" : "UAH";
   });
 
   const handleSelect = (e) => { 
@@ -32,13 +31,7 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems, targetCu
     }
     setCurrencyAmmount(e.target.value);
     if(!mainItem) {
-      //TODO: make more elegant solution
-      const mainID = mainItems.indexOf(true);
-      const mainID2 = mainItems.indexOf(false);
-      const newMainItems = [];
-      newMainItems[mainID] = !mainItems[mainID];
-      newMainItems[mainID2] = !mainItems[mainID2];
-      setMainItem(newMainItems);  
+      mainItems[0] ? setMainItem([false, true]) : setMainItem([true, false])
     }      
   }
 
@@ -69,9 +62,9 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems, targetCu
 
 
   return (
-    <div className="flex bg-white  px-2 text-black rounded-md w-full">
+    <div className="flex w-full bg-white px-2 text-black rounded-md">
         <select 
-          className="outline-none cursor-pointer border-r border-gray-600 py-4" 
+          className="outline-none cursor-pointer border-r border-gray-600 py-2 md:py-4" 
           onChange={handleSelect}
           defaultValue={mainItem ? 'EUR' : 'UAH'}
         >
@@ -81,9 +74,9 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems, targetCu
                   {currencyStyle[currency]}
                 </option>
             ))
-          }
+          }¡
         </select>
-        <input type="text" className="outline-none py-4 px-[10px] h-full text-lg" value={currencyAmmout} onChange={handleInput}/>
+        <input type="text" className="outline-none py-2 px-[8px] md:py-4 md:px-[10px] h-full w-full text-lg min-w-[150px]" value={currencyAmmout} onChange={handleInput}/>
     </div>
   )
 }

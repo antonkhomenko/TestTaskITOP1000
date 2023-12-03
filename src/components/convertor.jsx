@@ -18,55 +18,47 @@ const Convertor = () => {
 
 
   return (
-    <div className="w-full m-[0_auto] gap-x-6 gap-y-4 py-12 px-8 grid auto-rows-max grid-cols-[30px_1fr] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md shadow-lg shadow-blue-500/50">
+    <div className="w-[95%] lg:w-[70%] m-[2rem_auto] grid grid-flow-rows md:grid-cols-[max-content_1fr] gap-2 md:py-12 py-6 px-2 md:px-4  justify-items-center items-center bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md shadow-lg shadow-blue-500/50">
       <img
         src={currencyIcon}
         alt="currency-icon"
-        className="justify-self-stretch self-center w-[40px]"
+        className='h-[30px]'
       />
-      <div className="flex items-center justify-center gap-x-8">
-        <div className="w-1/2">
-          <CurrencyItem
-            exchangePositon="from"
-            rate={convertRate}
-            setRate={setConvertRate}
-            mainItem={mainItem[0]}
-            mainItems={mainItem}
-            setMainItem={setMainItem}
-            targetCurrency={targetCurrency}
-            setTargetCurrency={setTargetCurrency}
-          />
-        </div>
-        <div className="w-1/2">
-          <CurrencyItem
-            exchangePositon="from"
-            rate={convertRate}
-            setRate={setConvertRate}
-            mainItem={mainItem[1]}
-            mainItems={mainItem}
-            setMainItem={setMainItem}
-            targetCurrency={targetCurrency}
-            setTargetCurrency={setTargetCurrency}
-          />
-        </div>
+      <div className='flex flex-wrap gap-2 px-4 lg:px-8 w-full'>
+        <CurrencyItem
+          exchangePositon="from"
+          rate={convertRate}
+          setRate={setConvertRate}
+          mainItem={mainItem[0]}
+          mainItems={mainItem}
+          setMainItem={setMainItem}
+          targetCurrency={targetCurrency}
+          setTargetCurrency={setTargetCurrency}
+        />
+        <CurrencyItem
+          exchangePositon="from"
+          rate={convertRate}
+          setRate={setConvertRate}
+          mainItem={mainItem[1]}
+          mainItems={mainItem}
+          setMainItem={setMainItem}
+          targetCurrency={targetCurrency}
+          setTargetCurrency={setTargetCurrency}
+        />
       </div>
-      <img
-        src={infoIcon}
+      <img 
+        src={infoIcon} 
         alt="info-icon"
-        className="justify-self-stretch self-end mb-2"
+        className='h-[30px] hidden sm:block' 
       />
-      <div className="flex flex-col gap-y-2">
-        <p className='text-neutral-300 text-xl font-bold'> 
+      <div className="flex flex-col w-full px-4">
+        <p className="text-neutral-300 text-lg xl:text-xl font-bold">
           <span>{targetCurrency.from[1] + " "}</span>
-          <span>
-            {CurrencySigns[targetCurrency.from[0]] + " ="}
-          </span>
+          <span>{CurrencySigns[targetCurrency.from[0]] + " ="}</span>
         </p>
-        <p className='text-white font-bold text-4xl'>
+        <p className="text-white font-bold text-xl xl:text-4xl">
           <span>{targetCurrency.to[1] + " "}</span>
-          <span>
-            {CurrencySigns[targetCurrency.to[0]]}
-          </span>
+          <span>{CurrencySigns[targetCurrency.to[0]]}</span>
         </p>
       </div>
     </div>
