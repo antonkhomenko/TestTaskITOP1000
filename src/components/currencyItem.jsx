@@ -62,7 +62,7 @@ const CurrencyItem = ({rate, setRate, mainItem, setMainItem, mainItems, targetCu
 
 
   return (
-    <div className="flex w-full bg-white px-2 text-black rounded-md">
+    <div className="flex w-full md:w-[45%] bg-white px-2 text-black rounded-md">
         <select 
           className="outline-none cursor-pointer border-r border-gray-600 py-2 md:py-4" 
           onChange={handleSelect}

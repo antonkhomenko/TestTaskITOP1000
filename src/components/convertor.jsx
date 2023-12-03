@@ -18,13 +18,13 @@ const Convertor = () => {
 
 
   return (
-    <div className="w-[95%] lg:w-[70%] m-[2rem_auto] grid grid-flow-rows md:grid-cols-[max-content_1fr] gap-2 md:py-12 py-6 px-2 md:px-4  justify-items-center items-center bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md shadow-lg shadow-blue-500/50">
+    <div className="w-[95%] lg:w-[70%] m-[2rem_auto] grid grid-flow-rows md:grid-cols-[max-content_1fr] gap-2 md:gap-4 md:py-12 py-6 px-2 md:px-4  justify-items-center items-center bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md shadow-lg shadow-blue-500/50">
       <img
         src={currencyIcon}
         alt="currency-icon"
         className='h-[30px]'
       />
-      <div className='flex flex-wrap gap-2 px-4 lg:px-8 w-full'>
+      <div className='flex justify-between items-center flex-wrap gap-2 px-4  w-full'>
         <CurrencyItem
           exchangePositon="from"
           rate={convertRate}
